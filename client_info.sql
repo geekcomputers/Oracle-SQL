@@ -1,10 +1,12 @@
-REM Filename      : client_info.sql
-REM Author        : Craig Richards
-REM Created       : 
-REM Version       : 1.0
-REM Modifications :
+REM Script Name		: client_info.sql
+REM Author				: Craig Richards
+REM Created			: 
+REM Last Modified	:
+REM Version				: 1.0
 REM
-REM Description   : Shows the client connections within the oracle database
+REM Modifications		:
+REM
+REM Description		: Shows the client connections within the oracle database
 
 COLUMN username FORMAT A15 WORD_WRAPPED
 COLUMN module FORMAT A15 WORD_WRAPPED
