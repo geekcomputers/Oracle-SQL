@@ -1,10 +1,12 @@
-REM Filename      : dbfile_seqread.sql
-REM Author        : Craig Richards
-REM Created       : 06-August-2008
-REM Version       : 1.0
-REM Modifications :
+REM Script Name		: dbfile_seqread.sql
+REM Author				: Craig Richards
+REM Created			: 06-August-2008
+REM Last Modified	:
+REM Version				: 1.0
 REM
-REM Description   : Shows the waits for dbfile_sequential_reads
+REM Modifications		:
+REM
+REM Description		: Shows the waits for dbfile_sequential_reads
 
 SET LINES 200
 SET PAUSE OFF
