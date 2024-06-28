@@ -218,4 +218,6 @@ SPOOL OFF
 
 REM exit
 
+-- 生成一描述数据库的脚本
+
 REM End of Script

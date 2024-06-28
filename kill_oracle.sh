@@ -1,64 +1,65 @@
 #!/bin/bash
 
-# Name					: kill_oracle.sh
+# 名称					: kill_oracle.sh
 
-# Author				: Craig Richards
-# Created				: 31-May-2012
-# Last Modified		:
-# Version				: 1.0
-# Modifications		:
+# 作者				: Craig Richards
+# 创建				: 2012年5月31日
+# 最后修改		:
+# 版本				: 1.0
+# 修改记录		:
 
-# Description			: This will kill all the oracle processes associated with a given sid
+# 描述			: 这将杀死与给定sid相关的所有oracle进程
 
-# Instructions		: kill_oracle.sh $ORACLE_SID
+# 使用说明		: kill_oracle.sh $ORACLE_SID
 
 #################################
-# Start of procedures/functions #
+# 开始的过程/函数 #
 #################################
 
-funct_check_params()																									# Function Name
-{																																	# Start of the function
-  if [ ${NARG} -ne 1 ]; then																								# If the number of arguments is not one, then output a message
-    echo "$0 : Not enough Parameters passed, you need to supply an ORACLE_SID"
-    exit 1																														# Quit the program
-  elif																																# Else if
+funct_check_params()																									# 函数名称
+{																																	# 函数开始
+  if [ ${NARG} -ne 1 ]; then																								# 如果参数数量不是一个，则输出一条消息
+    echo "$0 : 参数不足，需要提供一个ORACLE_SID"
+    exit 1																														# 退出程序
+  elif																																# 否则
 
-  # If the argument passed is -h or --h then display the following message in the echo statement
+  # 如果传递的参数是-h或--h，则显示以下消息
 
   [[ ${SID} = "-h" ]] || [[ ${SID} = "--h" ]]; then
-    echo "Usage: You need to add an ORACLE_SID, e.g $0 BOSSLIVE"
-    exit 1																														# Quit the program
-  fi																																# End of the if statement
-}																																	# End of the function
+    echo "使用方法: 需要添加一个ORACLE_SID，例如 $0 BOSSLIVE"
+    exit 1																														# 退出程序
+  fi																																# 结束if语句
+}																																	# 结束函数
 
-funct_check_user()																										# Function Name
-{																																	# Start of the function
-  if [ `/usr/ucb/whoami` != 'oracle' ]; then																			# Check the user is Oracle
-    echo "Error: you must run this as oracle"																		# Display a message if its another user
-    exit 99																														# Quit the program
+funct_check_user()																										# 函数名称
+{																																	# 函数开始
+  if [ `/usr/ucb/whoami` != 'oracle' ]; then																			# 检查用户是否是Oracle
+    echo "错误: 必须以oracle用户身份运行"																		# 如果是其他用户，则显示一条消息
+    exit 99																														# 退出程序
   fi																																	
-}																																	# End of the function
+}																																	# 结束函数
 
-funct_kill_oracle()																											# Function Name
-{																																	# Start of the function
-  get_processes=`ps -ef | grep "ora_" | grep ${SID} | grep -v grep` ; export get_processes		# Set the variable get_processes to show the processes that will be killed
-  echo -e "\nProcesses that will be killed is \n\n ${get_processes}"
-  ps -ef | grep "ora_" | grep ${SID} | grep -v grep | awk '{print $2}' | xargs kill -9						# Kill all the processes associated with the given sid
-}																																	# End of the function
+funct_kill_oracle()																											# 函数名称
+{																																	# 函数开始
+  get_processes=`ps -ef | grep "ora_" | grep ${SID} | grep -v grep` ; export get_processes		# 设置变量get_processes以显示将被杀死的进程
+  echo -e "\n将被杀死的进程是 \n\n ${get_processes}"
+  ps -ef | grep "ora_" | grep ${SID} | grep -v grep | awk '{print $2}' | xargs kill -9						# 杀死与给定sid相关的所有进程
+}																																	# 结束函数
 
 ################
-# Main Program #
+# 主程序 #
 ################
 
-# Variable Settings
+# 变量设置
 
-SID=$1																															# Set the variable KEYWORD as the first argument passed
-NARG=$# 																													# Set the variable NARG to a number of arguments on the command line
+SID=$1																															# 将变量SID设置为传递的第一个参数
+NARG=$# 																													# 将变量NARG设置为命令行上的参数数量
 
-{																																	# Start of the main program
-  funct_check_params																									# Call the function funct_check_params
-  funct_check_user																										# Call the function funct_check_user
-  funct_kill_oracle																											# Call the function funct_kill_oracle
-}																																	# End of the main program
+{																																	# 主程序开始
+  funct_check_params																									# 调用函数funct_check_params
+  funct_check_user																										# 调用函数funct_check_user
+  funct_kill_oracle																											# 调用函数funct_kill_oracle
+}																																	# 主程序结束
 
-## End of Script
+## 脚本结束
+
